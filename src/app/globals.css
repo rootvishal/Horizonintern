@@ -20,7 +20,37 @@
 }
 
 body {
-  background: var(--background);
+  background: radial-gradient(circle at top, rgba(56, 189, 248, 0.15), transparent 45%),
+    radial-gradient(circle at 30% 20%, rgba(99, 102, 241, 0.2), transparent 40%),
+    #05070d;
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+}
+
+.glass-card {
+  border-radius: 1.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.06);
+  box-shadow: 0 20px 60px rgba(15, 23, 42, 0.35);
+  backdrop-filter: blur(18px);
+}
+
+.text-gradient-animate {
+  background: linear-gradient(120deg, #22d3ee, #6366f1, #ec4899, #22d3ee);
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  color: transparent;
+  animation: gradientShift 8s ease infinite;
+}
+
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
