@@ -10,7 +10,7 @@ function getInternshipSlugs() {
 }
 
 function getBaseUrl() {
-  const url = process.env.NEXT_PUBLIC_SITE_URL || "https://yourdomain.com";
+  const url = process.env.NEXT_PUBLIC_SITE_URL || "https://horizonintern.in";
   return url.endsWith("/") ? url.slice(0, -1) : url;
 }
 
