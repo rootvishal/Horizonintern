@@ -21,16 +21,16 @@ export default function SiteFooter({ onApply }: SiteFooterProps) {
           <div className="flex items-center gap-4 text-xs text-white/50">
             <span>Social:</span>
             <a
-              href="https://www.linkedin.com/company/Horizon Intern"
+              href="https://www.linkedin.com/company/horizon-intern"
               className="text-white/70 hover:text-white"
             >
               LinkedIn
             </a>
             <a
-              href="https://instagram.com/Horizon Intern"
+              href="https://chat.whatsapp.com/LIXRv78RDmUKCy5FSrpgH5"
               className="text-white/70 hover:text-white"
             >
-              Instagram
+              WhatsApp
             </a>
             <a
               href="https://x.com/Horizon Intern"

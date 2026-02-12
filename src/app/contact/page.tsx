@@ -32,8 +32,8 @@ const contactCards = [
 ];
 
 const socials = [
-  { label: 'LinkedIn', href: 'https://www.linkedin.com/company/Horizon Intern' },
-  { label: 'Instagram', href: 'https://instagram.com/Horizon Intern' },
+  { label: 'LinkedIn', href: 'https://www.linkedin.com/company/horizon-intern' },
+  { label: 'WhatsApp', href: 'https://chat.whatsapp.com/LIXRv78RDmUKCy5FSrpgH5' },
   { label: 'X', href: 'https://x.com/Horizon Intern' },
   { label: 'YouTube', href: 'https://youtube.com/@Horizon Intern' },
 ];
