@@ -1,12 +1,37 @@
 import { MetadataRoute } from "next";
-import { readdirSync } from "node:fs";
+import { Dirent, readdirSync } from "node:fs";
 import { join } from "node:path";
 
-function getInternshipSlugs() {
-  const internshipsDir = join(process.cwd(), "src", "app", "internships");
-  return readdirSync(internshipsDir, { withFileTypes: true })
-    .filter((entry) => entry.isDirectory())
-    .map((entry) => entry.name);
+function collectRoutes(dir: string, segments: string[] = []): string[] {
+  const entries: Dirent[] = readdirSync(dir, { withFileTypes: true });
+  const routes: string[] = [];
+
+  for (const entry of entries) {
+    if (entry.isFile() && entry.name === "page.tsx") {
+      const isDynamic = segments.some((segment) => segment.includes("["));
+      if (!isDynamic) {
+        routes.push(segments.length === 0 ? "/" : `/${segments.join("/")}`);
+      }
+      continue;
+    }
+
+    if (!entry.isDirectory()) {
+      continue;
+    }
+
+    const folder = entry.name;
+    if (folder.startsWith("@") || folder.startsWith("_")) {
+      continue;
+    }
+
+    // Route groups do not appear in URLs, so recurse without adding the segment.
+    const nextSegments =
+      folder.startsWith("(") && folder.endsWith(")") ? segments : [...segments, folder];
+
+    routes.push(...collectRoutes(join(dir, folder), nextSegments));
+  }
+
+  return routes;
 }
 
 function getBaseUrl() {
@@ -17,20 +42,13 @@ function getBaseUrl() {
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = getBaseUrl();
   const now = new Date();
-  const internshipSlugs = getInternshipSlugs();
+  const appDir = join(process.cwd(), "src", "app");
+  const routes = Array.from(new Set(collectRoutes(appDir))).sort();
 
-  return [
-    {
-      url: baseUrl,
+  return routes.map((route) => ({
+      url: route === "/" ? baseUrl : `${baseUrl}${route}`,
       lastModified: now,
-      changeFrequency: "daily",
-      priority: 1,
-    },
-    ...internshipSlugs.map((slug) => ({
-      url: `${baseUrl}/internships/${slug}`,
-      lastModified: now,
-      changeFrequency: "weekly" as const,
-      priority: 0.8,
-    })),
-  ];
+      changeFrequency: route === "/" ? "daily" : "weekly",
+      priority: route === "/" ? 1 : 0.8,
+    }));
 }
