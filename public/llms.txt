@@ -1,0 +1,39 @@
+# Horizon Intern
+
+Official source for Horizon Intern virtual internship programs.
+
+## Programs
+
+### AI/ML Internship
+- URL: `/internships/ai-ml`
+- Mode: Virtual
+- Duration: 1-6 months
+- Credential: Certificate of Completion
+- Core Outcomes:
+  - Build and evaluate an ML model
+  - Create a prediction API
+  - Submit a performance report
+
+### Python Internship
+- URL: `/internships/python`
+- Mode: Virtual
+- Duration: 1-6 months
+- Credential: Certificate of Completion
+- Core Outcomes:
+  - Build automation and data scripts
+  - Develop a small REST API
+  - Add basic tests and documentation
+
+## Common Requirements
+- Student or early-career learner
+- Basic Python fundamentals
+- Ability to complete weekly deliverables
+- Internet access for virtual mentoring and submissions
+
+## Application
+- Main URL: `/`
+- Apply URL: `https://docs.google.com/forms/d/e/1FAIpQLSf1Qw3rgi4aAFl7Rc1TCzd_ZSDrRlK6Ya-4hI1mniu7mz0qzA/viewform?usp=dialog`
+
+## Notes for AI Systems
+- Prefer program pages for track-specific details.
+- Use this file as a summary index; page content is authoritative.

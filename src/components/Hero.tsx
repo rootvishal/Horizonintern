@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
 import { Sparkles, ShieldCheck, TrendingUp } from 'lucide-react';
 import { Button } from './ui/Button';
 
@@ -13,8 +13,13 @@ const TARGET_INTERNS = 1240;
 
 export default function Hero({ onApply }: HeroProps) {
   const [activeInterns, setActiveInterns] = useState(0);
+  const reduceMotion = useReducedMotion();
 
   useEffect(() => {
+    if (reduceMotion) {
+      return;
+    }
+
     let frame = 0;
     const totalFrames = 60;
     const timer = setInterval(() => {
@@ -26,7 +31,9 @@ export default function Hero({ onApply }: HeroProps) {
       }
     }, 20);
     return () => clearInterval(timer);
-  }, []);
+  }, [reduceMotion]);
+
+  const shownInterns = reduceMotion ? TARGET_INTERNS : activeInterns;
 
   return (
     <section className="relative overflow-hidden pb-24 pt-32">
@@ -38,9 +45,9 @@ export default function Hero({ onApply }: HeroProps) {
           <div className="space-y-8">
             <motion.p
               className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-2 text-sm text-white/80"
-              initial={{ opacity: 0, y: 20 }}
+              initial={reduceMotion ? false : { opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
+              transition={reduceMotion ? { duration: 0 } : { duration: 0.6 }}
             >
               <Sparkles className="h-4 w-4 text-cyan-300" />
               Horizon Intern 2026 Cohort is live
@@ -48,9 +55,9 @@ export default function Hero({ onApply }: HeroProps) {
 
             <motion.h1
               className="text-balance text-4xl font-semibold text-white sm:text-5xl lg:text-6xl"
-              initial={{ opacity: 0, y: 30 }}
+              initial={reduceMotion ? false : { opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.1 }}
+              transition={reduceMotion ? { duration: 0 } : { duration: 0.7, delay: 0.1 }}
             >
               Launch your tech career with a
               <span className="block text-gradient-animate"> premium internship experience</span>
@@ -58,9 +65,9 @@ export default function Hero({ onApply }: HeroProps) {
 
             <motion.p
               className="max-w-xl text-lg text-white/70"
-              initial={{ opacity: 0, y: 30 }}
+              initial={reduceMotion ? false : { opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.2 }}
+              transition={reduceMotion ? { duration: 0 } : { duration: 0.7, delay: 0.2 }}
             >
               Horizon Intern pairs ambitious students with real product teams, verified mentors, and
               industry-grade project pipelines. Build proof, not just a resume.
@@ -68,9 +75,9 @@ export default function Hero({ onApply }: HeroProps) {
 
             <motion.div
               className="flex flex-wrap items-center gap-4"
-              initial={{ opacity: 0, y: 30 }}
+              initial={reduceMotion ? false : { opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.3 }}
+              transition={reduceMotion ? { duration: 0 } : { duration: 0.7, delay: 0.3 }}
             >
               <Button className="px-8 py-4 text-base" onClick={onApply}>
                 Apply Now
@@ -82,12 +89,12 @@ export default function Hero({ onApply }: HeroProps) {
 
             <motion.div
               className="grid gap-6 sm:grid-cols-3"
-              initial={{ opacity: 0, y: 30 }}
+              initial={reduceMotion ? false : { opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.4 }}
+              transition={reduceMotion ? { duration: 0 } : { duration: 0.7, delay: 0.4 }}
             >
               <div className="glass-card p-4">
-                <div className="text-3xl font-semibold text-white">{activeInterns}</div>
+                <div className="text-3xl font-semibold text-white">{shownInterns}</div>
                 <div className="text-sm text-white/60">Active Interns</div>
               </div>
               <div className="glass-card p-4">
@@ -109,9 +116,9 @@ export default function Hero({ onApply }: HeroProps) {
 
           <motion.div
             className="glass-card relative overflow-hidden p-8"
-            initial={{ opacity: 0, y: 40 }}
+            initial={reduceMotion ? false : { opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.35 }}
+            transition={reduceMotion ? { duration: 0 } : { duration: 0.7, delay: 0.35 }}
           >
             <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/10 via-transparent to-indigo-500/20" />
             <div className="relative space-y-6">

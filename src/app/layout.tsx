@@ -17,6 +17,56 @@ export const metadata: Metadata = {
   description: "Join Horizon Intern for cutting-edge internships in Web Dev, AI/ML, Python, and Data Analytics. Apply now and kickstart your career.",
 };
 
+const programSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "EducationalOccupationalProgram",
+      name: "Horizon Intern Virtual Internship Program",
+      description:
+        "Virtual internship program covering AI/ML and Python tracks with mentor reviews and project-based outcomes.",
+      educationalProgramMode: "online",
+      timeToComplete: "P6M",
+      occupationalCredentialAwarded: "Certificate of Completion",
+      offers: {
+        "@type": "Offer",
+        price: "0",
+        priceCurrency: "USD",
+      },
+      provider: {
+        "@type": "Organization",
+        name: "Horizon Intern",
+      },
+    },
+    {
+      "@type": "Course",
+      name: "Free AI/ML Internship with Certificate",
+      description:
+        "AI/ML internship track with model building, API integration, and mentor-guided evaluations in a virtual format.",
+      educationalLevel: "Beginner to Intermediate",
+      courseMode: "online",
+      timeRequired: "P1M",
+      provider: {
+        "@type": "Organization",
+        name: "Horizon Intern",
+      },
+    },
+    {
+      "@type": "Course",
+      name: "Python Internship for Students",
+      description:
+        "Python internship track focused on automation, API development, testing, and portfolio-ready project delivery.",
+      educationalLevel: "Beginner to Intermediate",
+      courseMode: "online",
+      timeRequired: "P1M",
+      provider: {
+        "@type": "Organization",
+        name: "Horizon Intern",
+      },
+    },
+  ],
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -35,6 +85,10 @@ export default function RootLayout({
               gtag('config', 'G-TKQ4LJSVH9');
             `,
           }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(programSchema) }}
         />
       </head>
       <body
